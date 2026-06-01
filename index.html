@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>💖 Date avec moi ? 💖</title>
+
+    <link rel="stylesheet" href="./styles.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="cookiePopup">
+
+    <div class="popup-card">
+
+        <h2>⚠️ Avertissement ⚠️</h2>
+
+        <p>
+            Ce site contient :
+        </p>
+
+        <ul>
+            <li>🌸 Des fleurs</li>
+            <li>💖 Des cœurs</li>
+            <li>🎀 Du Hello Kitty</li>
+            <li>🎵 De la musique kawaii</li>
+        </ul>
+
+        <p>
+            En continuant, vous acceptez de recevoir
+            une dose excessive de mignonnerie.
+        </p>
+
+        <button id="acceptCookies">
+            💖 J'accepte les bonnes vibes 💖
+        </button>
+
+    </div>
+
+</div>
+    <div id="floating-container"></div>
+    <div class="background-hearts"></div>
+    <div class="music-player">
+      <button id="musicToggle">🎵</button>
+
+      <input id="volumeSlider" type="range" min="0" max="100" value="30" />
+    </div>
+
+    <main class="container">
+      <div class="header-card">
+        <img
+          src="https://imgs.search.brave.com/PSzTEHODriQKT5Nu8ytYI5aZs5QvjuBB6jwEdxLjq3w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9nYWxs/ZXJ5cG5nLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyNC8w/OC9SZWQtSGVsbG8t/S2l0dHktcG5nLXRy/YW5zcGFyZW50LWlt/YWdlLTI1MHgyNDMu/cG5n"
+          class="kitty"
+        />
+
+        <h1>💖 Plannifie le prochain date 💖</h1>
+
+        <p>✨</p>
+      </div>
+
+      <section class="card">
+        <h2>📅 Quand ?</h2>
+
+        <div class="datetime-container">
+          <div class="input-group">
+            <span>🌸 Date</span>
+            <input type="date" />
+          </div>
+
+          <div class="input-group">
+            <span>⏰ Heure</span>
+            <input type="time" />
+          </div>
+        </div>
+        <p class="cute-note">
+          ✨ Si tu ne sais pas encore, choisis une heure approximative ✨
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>🎀 Quel type de date ?</h2>
+        <section class="cardWithImg">
+          <div class="choices">
+            <button>Café ☕</button>
+            <button>Cinéma 🍿</button>
+            <button>Pique-nique 🧺</button>
+            <button>Balade 🌸</button>
+            <button>Netflix and chill 🛋️</button>
+            <button id="btnAutre">Autre 👀</button>
+          </div>
+          <img
+            src="https://imgs.search.brave.com/78jW7qNlCjIxmtl3AlhrejNoV3vpHDpk2DLTTcTAo6A/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzBlL2Qx/LzQ1LzBlZDE0NTk0/ZTM2OTFhZWJiNzMy/ZjgzOWJlNTk5NWE2/LmpwZw"
+            class="kitty"
+          />
+        </section>
+        <input type="text" placeholder="Dis moi ce que tu veut faire !" class="input-autre"/>
+      </section>
+
+      <section class="card">
+        <h2>📍 Où ?</h2>
+        <section class="cardWithImg">
+          <input type="text" placeholder="Grenoble, Tokyo, Mars..." />
+
+          <img
+            src="https://imgs.search.brave.com/slUFC-i-vJtBNoJnzUJRwsYBgG4T-U3R5nMmzGHT6Ew/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2Q5L2Ni/L2M2L2Q5Y2JjNjY0/YTgwNTZhNGI5OTBj/MGI5M2NmOWI2M2Zj/LmpwZw"
+            class="kitty"
+          />
+        </section>
+      </section>
+
+      <section class="card">
+        <h2>💌 Petit message</h2>
+
+        <textarea placeholder="Écris quelque chose..."></textarea>
+      </section>
+
+      <button class="submit-btn">💖 Valider 💖</button>
+    </main>
+
+    <audio id="bgMusic" loop>
+      <source
+        src="La chanson des Bisous.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,331 @@
+// =========================
+// ELEMENTS
+// =========================
+
+const music = document.getElementById("bgMusic");
+
+const toggleBtn = document.getElementById("musicToggle");
+
+const volumeSlider = document.getElementById("volumeSlider");
+
+const popup = document.getElementById("cookiePopup");
+
+const acceptBtn = document.getElementById("acceptCookies");
+
+const floatingContainer =
+  document.getElementById("floating-container");
+
+const popupCard = document.querySelector(".popup-card");
+
+// =========================
+// ETAT
+// =========================
+
+let animationEnabled = false;
+
+// =========================
+// SLIDER VOLUME
+// =========================
+
+function updateSlider() {
+
+  const value =
+    ((volumeSlider.value - volumeSlider.min) /
+      (volumeSlider.max - volumeSlider.min)) * 100;
+
+  volumeSlider.style.background = `
+    linear-gradient(
+      to right,
+      #ff77b7 0%,
+      #ff77b7 ${value}%,
+      #ffd1e6 ${value}%,
+      #ffd1e6 100%
+    )
+  `;
+}
+
+volumeSlider.addEventListener("input", () => {
+
+  if (music) {
+    music.volume = volumeSlider.value / 100;
+  }
+
+  updateSlider();
+});
+
+updateSlider();
+
+// =========================
+// PLAY / PAUSE
+// =========================
+
+toggleBtn.addEventListener("click", () => {
+
+  if (!music) return;
+
+  if (music.paused) {
+
+    music.play();
+
+    animationEnabled = true;
+
+    toggleBtn.textContent = "🎵";
+
+    document
+      .querySelectorAll(".floating-item")
+      .forEach(item => {
+        item.style.animationPlayState = "running";
+      });
+
+  } else {
+
+    music.pause();
+
+    animationEnabled = false;
+
+    toggleBtn.textContent = "🔇";
+
+    document
+      .querySelectorAll(".floating-item")
+      .forEach(item => {
+        item.style.animationPlayState = "paused";
+      });
+  }
+});
+
+// =========================
+// POPUP DE DEMARRAGE
+// =========================
+
+acceptBtn.addEventListener("click", () => {
+
+  navigator.vibrate?.(150);
+
+  if (music) {
+    music.volume = volumeSlider.value / 100;
+    music.play();
+  }
+
+  animationEnabled = true;
+
+  createExplosion();
+
+  popupCard.classList.add("explode");
+
+  setTimeout(() => {
+
+    popup.remove();
+
+  }, 500);
+
+  toggleBtn.textContent = "🎵";
+});
+
+// =========================
+// EXPLOSION
+// =========================
+
+function createExplosion() {
+
+  const rect = popupCard.getBoundingClientRect();
+
+  const particles = [
+    "💖",
+    "💕",
+    "🌸",
+    "🎀",
+    "✨",
+    "🐱"
+  ];
+
+  for (let i = 0; i < 50; i++) {
+
+    setTimeout(() => {
+
+      const particle =
+        document.createElement("div");
+
+      particle.classList.add("explosion-heart");
+
+      particle.textContent =
+        particles[
+          Math.floor(
+            Math.random() * particles.length
+          )
+        ];
+
+      particle.style.left =
+        rect.left +
+        Math.random() * rect.width +
+        "px";
+
+      particle.style.top =
+        rect.top +
+        Math.random() * rect.height +
+        "px";
+
+      const angle =
+        Math.random() * Math.PI * 2;
+
+      const distance =
+        250 + Math.random() * 500;
+
+      const x =
+        Math.cos(angle) * distance;
+
+      const y =
+        Math.sin(angle) * distance;
+
+      particle.style.setProperty(
+        "--x",
+        `${x}px`
+      );
+
+      particle.style.setProperty(
+        "--y",
+        `${y}px`
+      );
+
+      document.body.appendChild(
+        particle
+      );
+
+      particle.addEventListener(
+        "animationend",
+        () => {
+          particle.remove();
+        }
+      );
+
+    }, i * 15);
+
+  }
+}
+
+// =========================
+// EMOJIS FLOTTANTS
+// =========================
+
+const floatingElements = [
+  "💖",
+  "💕",
+  "🌸",
+  "🌹",
+  "🎀",
+  "✨"
+];
+
+function createFloatingItem() {
+
+  if (!animationEnabled) return;
+
+  const item =
+    document.createElement("div");
+
+  item.classList.add(
+    "floating-item"
+  );
+
+  item.textContent =
+    floatingElements[
+      Math.floor(
+        Math.random() *
+        floatingElements.length
+      )
+    ];
+
+  item.style.left =
+    Math.random() * 100 + "%";
+
+  item.style.fontSize =
+    1.5 +
+    Math.random() * 2.5 +
+    "rem";
+
+  item.style.animationDuration =
+    8 +
+    Math.random() * 10 +
+    "s";
+
+  floatingContainer.appendChild(
+    item
+  );
+
+  item.addEventListener(
+    "animationend",
+    () => {
+      item.remove();
+    }
+  );
+}
+
+setInterval(
+  createFloatingItem,
+  400
+);
+
+// =========================
+// CHOIX DU TYPE DE DATE
+// =========================
+
+const buttons =
+  document.querySelectorAll(
+    ".choices button"
+  );
+
+buttons.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      buttons.forEach(btn => {
+        btn.classList.remove(
+          "selected"
+        );
+      });
+
+      button.classList.add(
+        "selected"
+      );
+    }
+  );
+});
+
+// =========================
+// INPUT AUTRE IDEE DE DATE
+// =========================
+
+const dateTypeButtons =
+  document.querySelectorAll(".choices button");
+
+const inputAutre =
+  document.querySelector(".input-autre");
+
+dateTypeButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    // Désélectionne tout
+    dateTypeButtons.forEach(btn => {
+      btn.classList.remove("selected");
+    });
+
+    // Sélectionne le bouton cliqué
+    button.classList.add("selected");
+
+    // Gestion du champ "Autre"
+    if (button.id === "btnAutre") {
+
+      inputAutre.classList.add("visible");
+
+      inputAutre.focus();
+
+    } else {
+
+      inputAutre.classList.remove("visible");
+
+      inputAutre.value = "";
+    }
+  });
+});
