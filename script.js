@@ -23,6 +23,8 @@ const popupCard = document.querySelector(".popup-card");
 
 let animationEnabled = false;
 
+initKittyHearts();
+
 // =========================
 // SLIDER VOLUME
 // =========================
@@ -339,83 +341,111 @@ dateTypeButtons.forEach(button => {
 // COEUR SUR LES KITTY
 // =========================
 
-const kittyImages =
-  document.querySelectorAll(".kitty");
+function initKittyHearts() {
+
+  const kittyImages =
+    document.querySelectorAll(".kitty");
 
   kittyImages.forEach(kitty => {
 
-  kitty.addEventListener("mouseenter", () => {
+    kitty.addEventListener("mouseenter", () => {
 
-    const rect = kitty.getBoundingClientRect();
+      const rect = kitty.getBoundingClientRect();
 
-    for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 8; i++) {
 
-      const heart =
-        document.createElement("div");
+        const heart =
+          document.createElement("div");
 
-      heart.classList.add(
-        "hover-heart"
-      );
+        heart.classList.add("hover-heart");
 
-      heart.textContent =
-        Math.random() > 0.5
-          ? "💖"
-          : "💕";
+        heart.textContent =
+          Math.random() > 0.5
+            ? "💖"
+            : "💕";
 
-      heart.style.left =
-        rect.left +
-        rect.width / 2 +
-        "px";
+        heart.style.left =
+          rect.left +
+          rect.width / 2 +
+          "px";
 
-      heart.style.top =
-        rect.top +
-        rect.height / 2 +
-        "px";
+        heart.style.top =
+          rect.top +
+          rect.height / 2 +
+          "px";
 
-      const angle =
-        Math.random() * Math.PI * 2;
+        const angle =
+          Math.random() * Math.PI * 2;
 
-      const distance =
-        30 + Math.random() * 50;
+        const distance =
+          30 + Math.random() * 50;
 
-      heart.style.setProperty(
-        "--x",
-        `${Math.cos(angle) * distance}px`
-      );
+        heart.style.setProperty(
+          "--x",
+          `${Math.cos(angle) * distance}px`
+        );
 
-      heart.style.setProperty(
-        "--y",
-        `${Math.sin(angle) * distance}px`
-      );
+        heart.style.setProperty(
+          "--y",
+          `${Math.sin(angle) * distance}px`
+        );
 
-      document.body.appendChild(
-        heart
-      );
+        document.body.appendChild(heart);
 
-      heart.addEventListener(
-        "animationend",
-        () => heart.remove()
-      );
-    }
+        heart.addEventListener(
+          "animationend",
+          () => heart.remove()
+        );
+      }
+
+    });
 
   });
 
-});
+}
 
 // =========================
 // TRANSITION BOUTON VALIDER
 // =========================
 
-submitBtn.addEventListener("click", () => {
+const submitBtn =
+  document.querySelector(".submit-btn");
+
+if (submitBtn) {
+
+  submitBtn.addEventListener("click", () => {
+
+    document.querySelector(".container").innerHTML = `
+      <div class="card confirmation-card">
+
+          <img src="Hello Kitty.png" class="kitty">
+
+          <h1>💖 Formulaire envoyé 💖</h1>
+
+          <p>
+              Merci pour ta participation.
+          </p>
+
+          <p>
+              Les experts du comité des rendez-vous
+              vont examiner votre demande.
+          </p>
+
+          <img src="Hello Kitty and Batman.png" class="kitty">
+
+      </div>
+    `;
+
+    music.pause();
 
     music.src = "I Love You So.mp3";
 
+    music.load();
+
     music.play();
 
-    setTimeout(() => {
+    initKittyHearts();
 
-        window.location.href = "merci.html";
+  });
 
-    }, 1500);
-
-});
+}
