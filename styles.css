@@ -223,10 +223,10 @@ body {
   width: 28px;
   height: 28px;
 
-  background: url("https://imgs.search.brave.com/s7bAIHud3LoDxtqxgdtJOuKmY_kMMGBwRNwBV06h6xk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMjQv/NjU5LzAyMC9zbWFs/bC9waW5rLWhlYXJ0/LWlzb2xhdGVkLWZy/ZWUtcG5nLnBuZw");
-
+  background: url("Heart.png") center no-repeat;
+  transform: scale(1.5);
   background-size: contain;
-  background-repeat: no-repeat;
+
 }
 #volumeSlider::-moz-range-progress {
   background: #ff77b7;
