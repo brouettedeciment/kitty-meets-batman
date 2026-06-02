@@ -408,7 +408,7 @@ const kittyImages =
 
 submitBtn.addEventListener("click", () => {
 
-    music.src = "ending.mp3";
+    music.src = "I Love You So.mp3";
 
     music.play();
 
