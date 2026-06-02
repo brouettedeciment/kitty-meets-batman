@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>💖 kitty meets Batman ? 💖</title>
 
+    <link rel="icon" href="Hello kitty with batman mask.png" type="image/png">
+
     <link rel="stylesheet" href="./styles.css" />
 
     <link
@@ -67,12 +69,12 @@
         <div class="datetime-container">
           <div class="input-group">
             <span>🌸 Date</span>
-            <input type="date" />
+            <input type="date" id="dateInput" />
           </div>
 
           <div class="input-group">
             <span>⏰ Heure</span>
-            <input type="time" />
+            <input type="time" id="timeInput" />
           </div>
         </div>
         <p class="cute-note">
@@ -84,12 +86,12 @@
         <h2>🎀 Quel type de date ?</h2>
         <section class="cardWithImg">
           <div class="choices">
-            <button>Café ☕</button>
-            <button>Cinéma 🍿</button>
-            <button>Pique-nique 🧺</button>
-            <button>Balade 🌸</button>
-            <button>Netflix and chill 🛋️</button>
-            <button id="btnAutre">Autre 👀</button>
+            <button type="button">Café ☕</button>
+            <button type="button">Cinéma 🍿</button>
+            <button type="button">Pique-nique 🧺</button>
+            <button type="button">Balade 🌸</button>
+            <button type="button">Netflix and chill 🛋️</button>
+            <button id="btnAutre" type="button">Autre 👀</button>
           </div>
           <img
             src="Hello Kitty and Batman.png"
@@ -101,6 +103,7 @@
             type="text"
             placeholder="Dis moi ce que tu veux faire !"
             class="input-autre"
+            id="autreInput"
           >
         </div>
       </section>
@@ -108,7 +111,7 @@
       <section class="card">
         <h2>📍 Où ?</h2>
         <section class="cardWithImg">
-          <input type="text" placeholder="Grenoble, Tokyo, Mars..." />
+          <input type="text" id="locationInput" placeholder="Grenoble, Tokyo, Mars..." />
 
           <img
             src="Hello kitty as Batgirl.png"
@@ -120,10 +123,10 @@
       <section class="card">
         <h2>💌 Petit message</h2>
 
-        <textarea placeholder="Écris un petit mot doux..."></textarea>
+        <textarea placeholder="Écris un petit mot doux..." id="messageInput"></textarea>
       </section>
 
-      <button class="submit-btn">💖 Valider 💖</button>
+      <button class="submit-btn" type="button" id="submitBtn">💖 Valider 💖</button>
     </main>
 
     <audio id="bgMusic" loop>
@@ -132,6 +135,9 @@
         type="audio/mpeg"
       />
     </audio>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -2,6 +2,8 @@
 // ELEMENTS
 // =========================
 
+emailjs.init("HS-YStgDf26gumY4w");
+
 const music = document.getElementById("bgMusic");
 
 const toggleBtn = document.getElementById("musicToggle");
@@ -420,47 +422,93 @@ function initKittyHearts() {
 
 }
 
+// ========================= 
+// TRANSITION BOUTON VALIDER 
 // =========================
-// TRANSITION BOUTON VALIDER
-// =========================
 
-const submitBtn =
-  document.querySelector(".submit-btn");
+submitBtn.addEventListener("click", async () => {
 
-if (submitBtn) {
+  const date =
+    document.getElementById("dateInput").value;
 
-  submitBtn.addEventListener("click", () => {
+  const heure =
+    document.getElementById("timeInput").value;
 
-    document.querySelector(".container").innerHTML = `
-      <div class="card confirmation-card">
+  const lieu =
+    document.getElementById("locationInput").value;
 
-          <img src="Hello Kitty.png" class="kitty">
+  const message =
+    document.getElementById("messageInput").value;
 
-          <h1>💖 Formulaire envoyé 💖</h1>
+  const autre =
+    document.getElementById("autreInput").value;
 
-          <p>
-              Merci pour ta participation.
-          </p>
+  let typeDate = "Non précisé";
 
-          <p>
-              Les experts du comité des rendez-vous
-              vont examiner votre demande.
-          </p>
+  const selectedButton =
+    document.querySelector(
+      ".choices button.selected"
+    );
 
-          <img src="Hello Kitty and Batman.png" class="kitty">
+  if (selectedButton) {
+    typeDate =
+      selectedButton.textContent;
+  }
 
-      </div>
-    `;
+  try {
 
-    music.pause();
+    await emailjs.send(
+      "service_oswogjd",
+      "template_zrxf0ui",
+      {
+        date,
+        heure,
+        lieu,
+        message,
+        typeDate,
+        autre,
+        currentDate:
+          new Date().toLocaleString("fr-FR")
+      }
+    );
 
-    music.src = "I Love You So.mp3";
+    console.log("Mail envoyé");
 
-    music.load();
+  } catch (error) {
 
-    music.play();
+    console.error(error);
 
-    initKittyHearts();
+  }
 
-  });
-}
+  document.querySelector(".container").innerHTML = `
+    <div class="card confirmation-card">
+
+      <img src="Hello Kitty.png" class="kitty">
+
+      <h1>💖 Formulaire envoyé 💖</h1>
+
+      <p>
+        Merci pour ta participation.
+      </p>
+
+      <p>
+        Les experts du comité des rendez-vous
+        vont examiner votre demande.
+      </p>
+
+      <img src="Hello Kitty and Batman.png" class="kitty">
+
+    </div>
+  `;
+
+  music.pause();
+
+  music.src = "I Love You So.mp3";
+
+  music.load();
+
+  music.play();
+
+  initKittyHearts();
+
+});
