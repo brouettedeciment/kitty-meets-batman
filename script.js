@@ -219,6 +219,22 @@ function createFloatingItem() {
 
   if (!animationEnabled) return;
 
+  if (document.hidden) {
+      document
+        .querySelectorAll(".floating-item")
+        .forEach(item => {
+          item.style.animationPlayState = "paused";
+      });
+      return;
+    } else {
+
+    document
+      .querySelectorAll(".floating-item")
+      .forEach(item => {
+        item.style.animationPlayState = "running";
+      });
+  }
+
   const item =
     document.createElement("div");
 
@@ -447,5 +463,4 @@ if (submitBtn) {
     initKittyHearts();
 
   });
-
 }
