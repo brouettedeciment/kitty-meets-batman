@@ -133,9 +133,7 @@ function createExplosion() {
     "💖",
     "💕",
     "🌸",
-    "🎀",
     "✨",
-    "🐱"
   ];
 
   for (let i = 0; i < 50; i++) {
@@ -302,6 +300,9 @@ const dateTypeButtons =
 const inputAutre =
   document.querySelector(".input-autre");
 
+const autreContainer =
+  document.querySelector(".autre-container");
+
 dateTypeButtons.forEach(button => {
 
   button.addEventListener("click", () => {
@@ -319,13 +320,102 @@ dateTypeButtons.forEach(button => {
 
       inputAutre.classList.add("visible");
 
+      autreContainer.classList.add("visible");
+
       inputAutre.focus();
 
     } else {
 
       inputAutre.classList.remove("visible");
 
+      autreContainer.classList.remove("visible");
+
       inputAutre.value = "";
     }
   });
+});
+
+// =========================
+// COEUR SUR LES KITTY
+// =========================
+
+const kittyImages =
+  document.querySelectorAll(".kitty");
+
+  kittyImages.forEach(kitty => {
+
+  kitty.addEventListener("mouseenter", () => {
+
+    const rect = kitty.getBoundingClientRect();
+
+    for (let i = 0; i < 8; i++) {
+
+      const heart =
+        document.createElement("div");
+
+      heart.classList.add(
+        "hover-heart"
+      );
+
+      heart.textContent =
+        Math.random() > 0.5
+          ? "💖"
+          : "💕";
+
+      heart.style.left =
+        rect.left +
+        rect.width / 2 +
+        "px";
+
+      heart.style.top =
+        rect.top +
+        rect.height / 2 +
+        "px";
+
+      const angle =
+        Math.random() * Math.PI * 2;
+
+      const distance =
+        30 + Math.random() * 50;
+
+      heart.style.setProperty(
+        "--x",
+        `${Math.cos(angle) * distance}px`
+      );
+
+      heart.style.setProperty(
+        "--y",
+        `${Math.sin(angle) * distance}px`
+      );
+
+      document.body.appendChild(
+        heart
+      );
+
+      heart.addEventListener(
+        "animationend",
+        () => heart.remove()
+      );
+    }
+
+  });
+
+});
+
+// =========================
+// TRANSITION BOUTON VALIDER
+// =========================
+
+submitBtn.addEventListener("click", () => {
+
+    music.src = "ending.mp3";
+
+    music.play();
+
+    setTimeout(() => {
+
+        window.location.href = "merci.html";
+
+    }, 1500);
+
 });
