@@ -275,6 +275,12 @@ body {
   gap: 20px;
 }
 
+@media (max-width: 600px) {
+  .cardWithImg {
+    flex-direction: column;
+  }
+}
+
 .cardWithImg img {
   flex-shrink: 0;
 }
