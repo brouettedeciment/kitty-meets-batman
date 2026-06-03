@@ -286,70 +286,27 @@ setInterval(
 // CHOIX DU TYPE DE DATE
 // =========================
 
-const buttons =
-  document.querySelectorAll(
-    ".choices button"
-  );
-
-buttons.forEach(button => {
-
-  button.addEventListener(
-    "click",
-    () => {
-
-      buttons.forEach(btn => {
-        btn.classList.remove(
-          "selected"
-        );
-      });
-
-      button.classList.add(
-        "selected"
-      );
-    }
-  );
-});
-
-// =========================
-// INPUT AUTRE IDEE DE DATE
-// =========================
-
-const dateTypeButtons =
-  document.querySelectorAll(".choices button");
-
-const inputAutre =
-  document.querySelector(".input-autre");
-
-const autreContainer =
-  document.querySelector(".autre-container");
+const dateTypeButtons = document.querySelectorAll(".choices button");
+const inputAutre      = document.querySelector(".input-autre");
+const autreContainer  = document.querySelector(".autre-container");
 
 dateTypeButtons.forEach(button => {
-
   button.addEventListener("click", () => {
-
     // Désélectionne tout
     dateTypeButtons.forEach(btn => {
       btn.classList.remove("selected");
     });
-
     // Sélectionne le bouton cliqué
     button.classList.add("selected");
 
     // Gestion du champ "Autre"
     if (button.id === "btnAutre") {
-
       inputAutre.classList.add("visible");
-
       autreContainer.classList.add("visible");
-
       inputAutre.focus();
-
     } else {
-
       inputAutre.classList.remove("visible");
-
       autreContainer.classList.remove("visible");
-
       inputAutre.value = "";
     }
   });

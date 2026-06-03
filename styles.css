@@ -6,6 +6,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 button {
@@ -20,6 +22,8 @@ body {
   background: linear-gradient(180deg, #ffd6ec, #ffeef8);
 
   overflow-x: hidden;
+
+    padding-top: 75px;
 }
 
 #cookiePopup {
@@ -236,16 +240,15 @@ body {
   background: #ffd1e6;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
   #volumeSlider {
     display: none;
   }
 }
 
 .container {
-  width: min(1000px, 90%);
-  margin: 50px auto;
-
+  width: min(700px, 92%);
+  margin: 20px auto 60px;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -291,28 +294,25 @@ body {
         box-shadow .25s ease;
 }
 
-.card:hover {
-
-    transform:
-        translateY(-8px)
-        scale(1.02);
-
-    box-shadow:
-        0 18px 40px rgba(255,100,180,.25);
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(255, 100, 180, .25);
+  }
 }
 
 .kitty {
   width: 160px;
   margin-bottom: 15px;
+  transition: transform .3s ease;
+  animation: kittyBounce 3s ease-in-out infinite;
 }
 
-.kitty {
-
-  transition:
-        transform .3s ease;
-
-    animation:
-        kittyBounce 3s ease-in-out infinite;
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(255, 100, 180, .25);
+  }
 }
 
 @keyframes kittyBounce {
@@ -336,20 +336,19 @@ body {
     }
 }
 
+@media (hover: hover) {
+  .kitty:hover {
+    animation-play-state: paused;
+    transform: scale(1.08) rotate(-5deg);
+  }
+}
+
 .kitty:nth-child(odd) {
     animation-delay: -1s;
 }
 
 .kitty:nth-child(even) {
     animation-delay: -3s;
-}
-
-.kitty:hover {
-
-  animation-play-state: paused;
-    transform:
-        scale(1.08)
-        rotate(-5deg);
 }
 
 .hover-heart {
@@ -389,6 +388,7 @@ body {
 
 h1 {
   color: #ff5ca8;
+  font-size: clamp(1.4rem, 4vw, 2rem);
 }
 
 h2 {
@@ -458,12 +458,21 @@ textarea {
   min-height: 120px;
 }
 
+input[type="date"],
+input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 50px;
+}
+
 .datetime-container {
   display: flex;
 
   gap: 15px;
 
   align-items: center;
+
+  flex-wrap: wrap;
 }
 
 .datetime-container input {
@@ -476,6 +485,7 @@ textarea {
   gap: 8px;
 
   flex: 1;
+  min-width: 120px;
 }
 
 .input-group span {
@@ -511,12 +521,16 @@ textarea {
   cursor: pointer;
 
   transition: 0.2s;
+
+  min-height: 44px;
 }
 
-.choices button:hover,
-.submit-btn:hover {
-  transform: scale(1.08);
-  background: #ff5ca8;
+@media (hover: hover) {
+  .choices button:hover,
+  .submit-btn:hover {
+    transform: scale(1.08);
+    background: #ff5ca8;
+  }
 }
 
 .submit-btn {
